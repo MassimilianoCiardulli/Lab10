@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import it.polito.tdp.porto.model.Author;
+import it.polito.tdp.porto.model.AuthorIdMap;
 import it.polito.tdp.porto.model.Paper;
 
 public class PortoDAO {
@@ -62,6 +65,31 @@ public class PortoDAO {
 
 		} catch (SQLException e) {
 			 e.printStackTrace();
+			throw new RuntimeException("Errore Db");
+		}
+	}
+	
+	public List<Author> getAllAuthors(AuthorIdMap authorIdMap){
+		final String sql = "SELECT * FROM author ";
+
+		try {
+			Connection conn = DBConnect.getConnection();
+			PreparedStatement st = conn.prepareStatement(sql);
+
+			ResultSet rs = st.executeQuery();
+			List<Author> result = new ArrayList<>();
+
+			while (rs.next()) {
+
+				Author autore = new Author(rs.getInt("id"), rs.getString("lastname"), rs.getString("firstname"));
+				result.add(authorIdMap.get(autore));
+				System.out.println(result.get(result.size()-1));
+			}
+
+			return result;
+
+		} catch (SQLException e) {
+			// e.printStackTrace();
 			throw new RuntimeException("Errore Db");
 		}
 	}

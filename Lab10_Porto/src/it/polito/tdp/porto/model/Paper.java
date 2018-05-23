@@ -1,5 +1,8 @@
 package it.polito.tdp.porto.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Paper {
 
 	private int eprintid;
@@ -8,6 +11,8 @@ public class Paper {
 	private String publication;
 	private String type;
 	private String types;
+	private List<Creator> creators ;
+	private Papertype papertype ;
 
 	public Paper(int eprintid, String title, String issn, String publication, String type, String types) {
 		this.eprintid = eprintid;
@@ -16,6 +21,7 @@ public class Paper {
 		this.publication = publication;
 		this.type = type;
 		this.types = types;
+		this.creators = new ArrayList<>();
 	}
 
 	public int getEprintid() {
