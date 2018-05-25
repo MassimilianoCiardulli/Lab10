@@ -3,19 +3,19 @@ package it.polito.tdp.porto.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Author {
+public class Author implements Comparable<Author>{
 
 	private int id;
 	private String lastname;
 	private String firstname;
-	private List<Creator> creators ;
+	private List<Author> coauthors ;
 		
 	public Author(int id, String lastname, String firstname) {
 		super();
 		this.id = id;
 		this.lastname = lastname;
 		this.firstname = firstname;
-		creators = new ArrayList<>();
+		coauthors = new ArrayList<>();
 	}
 
 	public int getId() {
@@ -46,6 +46,18 @@ public class Author {
 	public void setFirstname(String firstname) {
 		this.firstname = firstname;
 	}
+	
+	public void addCoauthor(Author a) {
+		this.coauthors.add(a);
+	}
+	
+	public List<Author> getCoauthors() {
+		return this.coauthors;
+	}
+	
+	public void addAllCoauthor(List<Author> list) {
+		this.coauthors.addAll(list);
+	}
 
 	@Override
 	public String toString() {
@@ -72,6 +84,14 @@ public class Author {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Author altro) {
+		if(this.getLastname().equals(altro.getLastname())) {
+			return this.getFirstname().compareTo(altro.getFirstname());
+		}
+		return this.getLastname().compareTo(altro.getLastname());
 	}
 	
 	

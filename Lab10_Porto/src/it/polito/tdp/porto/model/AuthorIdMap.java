@@ -23,6 +23,15 @@ public class AuthorIdMap {
 		}
 	}
 	
+	public Author get(String name) {
+		for(Author a:map.values()) {
+			String nome = a.getLastname() + " " + a.getFirstname();
+			if(name.equals(nome))
+				return a;
+		}
+		return null ;
+	}
+	
 	public void put(int id, Author object) {
 		map.put(id, object);
 	}

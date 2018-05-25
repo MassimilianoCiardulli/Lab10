@@ -11,7 +11,7 @@ public class Paper {
 	private String publication;
 	private String type;
 	private String types;
-	private List<Creator> creators ;
+	private List<Author> creators ;
 	private Papertype papertype ;
 
 	public Paper(int eprintid, String title, String issn, String publication, String type, String types) {
@@ -99,7 +99,5 @@ public class Paper {
 			return false;
 		return true;
 	}
-	
-	
 
 }
